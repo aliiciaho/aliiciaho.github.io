@@ -4,13 +4,13 @@
     "href": "index.html",
     "title": "Alicia’s Website",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\n\n\nData Visualisation"
+    "text": "Data Visualisation\nThe link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download\nPlot showing the trend of depression in Singpoare from 1990-2017\n\n\n\n\n\nAnother graph"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About me\nI am Alicia Ho, an NUS student majoring in Music at the YST Conservatory of Music."
   }
 ]

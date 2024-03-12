@@ -2,12 +2,45 @@
 title: "Alicia's Website"
 ---
 
-This is a Quarto website.
+# Data Visualisation
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+The link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download
 
-```{r}
-1 + 1
+```{r eval=TRUE, include=FALSE}
+library(tidyverse)
+data <- read.csv("/Users/aliciaho/Desktop/nus yst/NM2207/NM2207 Project/Mental health Depression disorder Data.csv")
+print(data)
 ```
 
-# Data Visualisation
+Plot showing the trend of depression in Singpoare from 1990-2017
+
+```{r eval = TRUE, echo=FALSE}
+sgp_data <- data %>% select(-c(index, Entity)) %>%
+  filter(Code == "SGP", Year >=1990) %>%
+  select(Year, Depression....) %>%
+  na.omit()
+ggplot(sgp_data) +
+  aes(x = Year, y = Depression....) + 
+  geom_point()+
+  labs(x = "Year", y = "Percentage of population experiencing depression", title = "Trend of depression rates in Singapore from 1990-2017")
+```
+
+Another graph
+
+```{r eval=TRUE, include=FALSE}
+data$Schizophrenia.... <- as.numeric(data$Schizophrenia....)
+data$Bipolar.disorder....<- as.numeric(data$Bipolar.disorder....)
+data$Eating.disorders.... <- as.numeric(data$Eating.disorders....)
+```
+
+```{r eval=TRUE, echo=FALSE}
+newsgp_data <- data %>% select(-c(index, Entity)) %>%
+  filter(Code == "SGP", Year >=1990, Eating.disorders.... <100) %>%
+  pivot_longer(cols = Schizophrenia....:Alcohol.use.disorders...., names_to = "disorder_type", values_to = "percentage") %>%
+  select(Year, disorder_type, percentage) %>%
+  na.omit()
+print(ggplot(newsgp_data) +
+  aes(x = Year, y = percentage) +
+  geom_point() +
+  facet_wrap(~ disorder_type, ncol =2))
+```
