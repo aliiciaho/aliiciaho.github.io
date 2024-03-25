@@ -1,0 +1,48 @@
+---
+title: "Interactive Map"
+---
+
+# Interactive Map
+
+```{r eval=TRUE, echo=FALSE}
+#Creating map
+library(geojsonio)
+library(leaflet)
+library(magrittr)
+
+countries <- geojsonio::geojson_read("https://raw.githubusercontent.com/lvictory/maps-data/master/world.geo.json", 
+                                  what = "sp")
+class(countries)
+names(countries)
+
+m <- leaflet(countries) %>%
+  setView(-96, 37.8, 4) %>%
+  addTiles("MapBox", options = tileOptions(
+    id = "mapbox.light",
+    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN')))
+
+labels <- sprintf(
+  "<strong>%s</strong><br/>%s",
+  countries$name, countries$id
+) %>% lapply(htmltools::HTML)
+
+m %>% addPolygons(
+  fillColor = 'green',
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlightOptions = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "15px",
+    direction = "auto")
+)
+```
