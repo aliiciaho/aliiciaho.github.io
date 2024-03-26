@@ -18,6 +18,6 @@
     "href": "map.html",
     "title": "Interactive Map",
     "section": "",
-    "text": "Interactive Map\n\n\nRegistered S3 method overwritten by 'geojsonsf':\n  method        from   \n  print.geojson geojson\n\n\n\nAttaching package: 'geojsonio'\n\n\nThe following object is masked from 'package:base':\n\n    pretty\n\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\nWarning in sp::Polygon(y[[i]], i &gt; 1): less than 4 coordinates in polygon\n\n\n[1] \"SpatialPolygonsDataFrame\"\nattr(,\"package\")\n[1] \"sp\"\n\n\n[1] \"id\"   \"name\""
+    "text": "Interactive Map"
   }
 ]
