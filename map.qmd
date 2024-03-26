@@ -4,7 +4,7 @@ title: "Interactive Map"
 
 # Interactive Map
 
-```{r eval=TRUE, echo=FALSE}
+```{r eval=TRUE, include=FALSE}
 #Creating map
 library(geojsonio)
 library(leaflet)
@@ -25,7 +25,9 @@ labels <- sprintf(
   "<strong>%s</strong><br/>%s",
   countries$name, countries$id
 ) %>% lapply(htmltools::HTML)
+```
 
+```{r eval=TRUE, echo=FALSE}
 m %>% addPolygons(
   fillColor = 'green',
   weight = 2,
