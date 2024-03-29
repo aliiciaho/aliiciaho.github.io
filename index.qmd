@@ -7,7 +7,7 @@ title: "Alicia's Website"
 The link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download
 
 ```{=html}
-<iframe height="400" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
+<iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
 ```
 
 ```{r eval=TRUE, include=FALSE}
