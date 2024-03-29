@@ -1,59 +1,54 @@
 library(shiny)
+library(ggplot2)
+library(tidyverse)
 
-# Define UI for app that draws a histogram ----
 ui <- fluidPage(
-  
-  # App title ----
-  titlePanel("Hello World!"),
-  
-  # Sidebar layout with input and output definitions ----
+  titlePanel("Mental Health Disorders Worldwide"),
   sidebarLayout(
-    
-    # Sidebar panel for inputs ----
     sidebarPanel(
-      
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 5,
-                  max = 50,
-                  value = 30)
-      
+    selectizeInput('dataset', 'Choose Country', choices = NULL)
     ),
-    
-    # Main panel for displaying outputs ----
     mainPanel(
-      h1("Plot"),
-      # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
-      
-    )
-  )
-)
+      # Output: Header + plot
+      h4("Plot"),
+      plotOutput("plot")
+    )))
 
-# Define server logic required to draw a histogram ----
-server <- function(input, output) {
-  
-  # Histogram of the Old Faithful Geyser Data ----
-  # with requested number of bins
-  # This expression that generates a histogram is wrapped in a call
-  # to renderPlot to indicate that:
-  #
-  # 1. It is "reactive" and therefore should be automatically
-  #    re-executed when inputs (input$bins) change
-  # 2. Its output type is a plot
-  output$distPlot <- renderPlot({
-    
-    x    <- faithful$waiting
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    
-    hist(x, breaks = bins, col = "#75AADB", border = "yellow",
-         xlab = "Waiting time to next eruption (in mins)",
-         main = "Histogram of waiting times")
-    
-  })
-  
+
+# in server
+server <- function(input, output, session) {
+  updateSelectizeInput(session, 'foo', choices = data, server = TRUE)
 }
 
-# Create Shiny app ----
-shinyApp(ui = ui, server = server)
+server <- function(input, output, session){
+  
+  updateSelectizeInput(session, 'dataset', choices = data$Entity, server = TRUE)
+  
+  datasetInput <- eventReactive(input$dataset, {
+    data %>% filter(Entity == input$dataset)
+  })
+  
+  # Generate plot
+    output$plot <- renderPlot({
+      dataset <- datasetInput()
+      new_data <- dataset %>% select(-c(index, Code)) %>%
+        filter(Year >=1990, Eating.disorders.... <100) %>%
+        pivot_longer(cols = Schizophrenia....:Alcohol.use.disorders...., names_to = "disorder_type", values_to = "percentage") %>%
+        select(Year, disorder_type, percentage) %>%
+        na.omit()
+      ggplot(new_data) +
+              aes(x = Year, y = percentage, color=disorder_type) +
+              geom_point() +
+              theme_bw() +
+              theme(axis.text.x = element_text(colour = "grey20", size = 10, angle = 90, hjust = 0.5, vjust = 0.5) 
+              ) +
+              labs(title = paste("Overall trend of mental health disorders in", input$dataset, "from 1990-2017"), x = "Year", y = paste("Percentage of", input$dataset, "population")) +
+              scale_color_discrete(
+                name = "Type of mental health\ndisorder",
+                labels = c("Alcohol use disorder", "Anxiety disorder", "Bipolar disorder", "Depression", "Drug use disorder", "Eating disorder", "Schizophrenia")
+              )
+    })
+  }
+
+
+shinyApp(ui, server)
