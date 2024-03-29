@@ -2,6 +2,12 @@ library(shiny)
 library(ggplot2)
 library(tidyverse)
 
+data <- read.csv("Mental health Depression disorder Data copy.csv")
+names <- unique(data$Entity)
+data$Schizophrenia.... <- as.numeric(data$Schizophrenia....)
+data$Bipolar.disorder....<- as.numeric(data$Bipolar.disorder....)
+data$Eating.disorders.... <- as.numeric(data$Eating.disorders....)
+
 ui <- fluidPage(
   titlePanel("Mental Health Disorders Worldwide"),
   sidebarLayout(
@@ -14,15 +20,9 @@ ui <- fluidPage(
       plotOutput("plot")
     )))
 
-
-# in server
-server <- function(input, output, session) {
-  updateSelectizeInput(session, 'foo', choices = data, server = TRUE)
-}
-
 server <- function(input, output, session){
   
-  updateSelectizeInput(session, 'dataset', choices = data$Entity, server = TRUE)
+  updateSelectizeInput(session, 'dataset', choices = names, server = TRUE)
   
   datasetInput <- eventReactive(input$dataset, {
     data %>% filter(Entity == input$dataset)
@@ -31,7 +31,7 @@ server <- function(input, output, session){
   # Generate plot
     output$plot <- renderPlot({
       dataset <- datasetInput()
-      new_data <- dataset %>% select(-c(index, Code)) %>%
+      new_data <- dataset %>%
         filter(Year >=1990, Eating.disorders.... <100) %>%
         pivot_longer(cols = Schizophrenia....:Alcohol.use.disorders...., names_to = "disorder_type", values_to = "percentage") %>%
         select(Year, disorder_type, percentage) %>%

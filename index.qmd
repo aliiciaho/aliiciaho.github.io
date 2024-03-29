@@ -13,7 +13,7 @@ The link to the data I used can be found here: https://www.kaggle.com/datasets/t
 ```{r eval=TRUE, include=FALSE}
 library(tidyverse)
 data <- read.csv("/Users/aliciaho/Desktop/nus yst/NM2207/NM2207 Project/Mental health Depression disorder Data.csv")
-print(data)
+small_data <- data %>% select(-c(index, Code))
 ```
 
 Plot showing the trend of depression in Singapore from 1990-2017
