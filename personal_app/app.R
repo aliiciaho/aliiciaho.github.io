@@ -62,7 +62,8 @@ server <- function(input, output, session){
                 name = "Type of mental health\ndisorder",
                 labels = c("Alcohol use disorder", "Anxiety disorder", "Bipolar disorder", "Depression", "Drug use disorder", "Eating disorder", "Schizophrenia")
               ) +
-        scale_y_continuous(minor_breaks = seq(1, 5, 0.2))
+        scale_y_continuous(minor_breaks = seq(1, 5, 0.2)) +
+        scale_x_continuous(breaks = seq(1990, 2017, 1))
     })
   }
 

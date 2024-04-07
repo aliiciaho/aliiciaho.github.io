@@ -5,3 +5,21 @@ title: "About"
 # About me
 
 I am Alicia Ho, an NUS student majoring in Music at the YST Conservatory of Music.
+
+# Why did I choose this topic?
+
+
+
+# Credits
+
+The link to the data of mental health disorders worldwide can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download
+
+The link to the leaflet data to create the world map can be found here:
+
+# References
+Queensland Brain Institute. (2023, July 31). Half of World’s Population Will Experience a Mental Health Disorder. Harvard.edu. https://hms.harvard.edu/news/half-worlds-population-will-experience-mental-health-disorder
+
+World Health Organization. (2022a, June 8). Mental disorders. Who.int; World Health Organization: WHO. https://www.who.int/news-room/fact-sheets/detail/mental-disorders
+
+World Health Organization. (2022b, June 17). Mental health. Who.int; World Health Organization: WHO. https://www.who.int/en/news-room/fact-sheets/detail/mental-health-strengthening-our-response
+
