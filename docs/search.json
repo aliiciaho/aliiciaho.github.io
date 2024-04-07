@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Alicia’s Website",
     "section": "",
-    "text": "Data Visualisation\nThe link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download\n \nPlot showing the trend of depression in Singpoare from 1990-2017\n\n\n\n\n\nAnother graph"
+    "text": "Data Visualisation\nThe link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download\n \nPlot showing the trend of depression in Singapore from 1990-2017\n\n\n\n\n\nAnother graph"
   },
   {
     "objectID": "about.html",
@@ -18,6 +18,6 @@
     "href": "map.html",
     "title": "Interactive Map",
     "section": "",
-    "text": "Interactive Map"
+    "text": "Hover over the country of interest to find out the most recent mental health disorder data (2017)!"
   }
 ]

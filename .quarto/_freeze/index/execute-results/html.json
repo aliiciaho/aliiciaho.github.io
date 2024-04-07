@@ -1,7 +1,7 @@
 {
-  "hash": "2ec1a6cddf3b5c807f074162d6537b78",
+  "hash": "54bd3140472c4d5487a56365142747e9",
   "result": {
-    "markdown": "---\ntitle: \"Alicia's Website\"\n---\n\n\n# Data Visualisation\n\nThe link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download\n\n\n```{=html}\n<iframe height=\"400\" width=\"100%\" frameborder=\"no\" src=\"https://1ua3vn-alicia-ho.shinyapps.io/personal_app/\"> </iframe>\n```\n\n\n\n\nPlot showing the trend of depression in Singpoare from 1990-2017\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\nAnother graph\n\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n:::\n",
+    "markdown": "---\ntitle: \"Alicia's Website\"\n---\n\n\n# Data Visualisation\n\nThe link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download\n\n\n```{=html}\n<iframe height=\"600\" width=\"100%\" frameborder=\"no\" src=\"https://1ua3vn-alicia-ho.shinyapps.io/personal_app/\"> </iframe>\n```\n\n\n\n\nPlot showing the trend of depression in Singapore from 1990-2017\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\nAnother graph\n\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-4-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-5-1.png){width=672}\n:::\n:::\n",
     "supporting": [
       "index_files"
     ],
