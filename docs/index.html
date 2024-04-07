@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>aliiciaho.github.io - Alicia’s Website</title>
+<title>aliiciaho.github.io - Global Mental Health Disorders</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -109,7 +143,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-visualisation" id="toc-data-visualisation" class="nav-link active" data-scroll-target="#data-visualisation">Data Visualisation</a></li>
+  <li><a href="#what-are-the-trends-in-mental-health-disorders-across-the-globe" id="toc-what-are-the-trends-in-mental-health-disorders-across-the-globe" class="nav-link active" data-scroll-target="#what-are-the-trends-in-mental-health-disorders-across-the-globe">What are the trends in Mental Health Disorders across the globe?</a></li>
+  <li><a href="#dataset-used" id="toc-dataset-used" class="nav-link" data-scroll-target="#dataset-used">Dataset Used</a></li>
+  <li><a href="#mental-health-disorder-trend-for-each-country" id="toc-mental-health-disorder-trend-for-each-country" class="nav-link" data-scroll-target="#mental-health-disorder-trend-for-each-country">Mental Health Disorder trend for each country</a></li>
+  <li><a href="#alcohol-use-disorder" id="toc-alcohol-use-disorder" class="nav-link" data-scroll-target="#alcohol-use-disorder">Alcohol Use Disorder</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
   </ul>
 </nav>
     </div>
@@ -118,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Alicia’s Website</h1>
+<h1 class="title">Global Mental Health Disorders</h1>
 </div>
 
 
@@ -133,10 +171,57 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="data-visualisation" class="level1">
-<h1>Data Visualisation</h1>
-<p>The link to the data I used can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download</p>
+<section id="what-are-the-trends-in-mental-health-disorders-across-the-globe" class="level1">
+<h1>What are the trends in Mental Health Disorders across the globe?</h1>
+<p>Mental Health refers to “mental well-being that enables people to cope with the stresses of life, realize their abilities, learn well and work well, and contribute to their community” (World Health Organization, 2022b). Mental health disorders are “characterized by a clinically significant disturbance in an individual’s cognition, emotional regulation, or behaviour” (World Health Organization, 2022a). There are a multitude of mental health disorders that exist. On this website, the data analysed are focused on 7 Mental Health Disorders — Alcohol use disorder, Anxiety disorder, Bipolar disorder, Depression, Drug use disorder, Eating disorder and Schizophrenia.</p>
+<p>A study by researchers from Harvard Medical School and the University of Queensland have found that one out of every two people in the world will develop a mental health disorder in their lifetime (Queensland Brain Institute, 2023). This shows how prevalent mental health disorders have been in recent years. It is crucial to find out the main type and cause of mental health disorders in order to deal with them effectively. The current treatments used to deal with these disorder have not been very effective, hence data in this area of study will allow for greater ease of finding an effective treatment (Queensland Brain Institute, 2023).</p>
+<p>This website provides a visualisation for Mental Health Disorders across the globe. It is meant to bring awareness to the mental health issues that people experience, albeit the small percentage it seems to take up of the whole population. It is important to note that not all who suffer from mental health disorders seek help and are being reported in the dataset.</p>
+</section>
+<section id="dataset-used" class="level1">
+<h1>Dataset Used</h1>
+<p>The dataset used includes the columns: - Index: A unique number attached to each observation - Entity: Country name - Code: Country Code - Year: Year of data observed - Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(new_data <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rename</span>(<span class="at">Index =</span> index,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Entity =</span> Entity,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Code =</span> Code,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Year =</span> Year,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Schizophrenia =</span> Schizophrenia....,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Bipolar_Disorder =</span> Bipolar.disorder....,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">Eating_Disorder =</span> Eating.disorders....,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">Anxiety_Disorder =</span> Anxiety.disorders....,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">Druguse_Disorder =</span> Drug.use.disorders....,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">Depression =</span> Depression....,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">Alcoholuse_Disorder =</span> Alcohol.use.disorders....)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Index      Entity Code Year Schizophrenia Bipolar_Disorder Eating_Disorder
+1     0 Afghanistan  AFG 1990      0.160560         0.697779        0.101855
+2     1 Afghanistan  AFG 1991      0.160312         0.697961        0.099313
+3     2 Afghanistan  AFG 1992      0.160135         0.698107        0.096692
+4     3 Afghanistan  AFG 1993      0.160037         0.698257        0.094336
+5     4 Afghanistan  AFG 1994      0.160022         0.698469        0.092439
+6     5 Afghanistan  AFG 1995      0.160076         0.698695        0.090980
+  Anxiety_Disorder Druguse_Disorder Depression Alcoholuse_Disorder
+1         4.828830         1.677082   4.071831            0.672404
+2         4.829740         1.684746   4.079531            0.671768
+3         4.831108         1.694334   4.088358            0.670644
+4         4.830864         1.705320   4.096190            0.669738
+5         4.829423         1.716069   4.099582            0.669260
+6         4.828337         1.728112   4.104207            0.668746</code></pre>
+</div>
+</div>
+</section>
+<section id="mental-health-disorder-trend-for-each-country" class="level1">
+<h1>Mental Health Disorder trend for each country</h1>
 <iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
+</section>
+<section id="alcohol-use-disorder" class="level1">
+<h1>Alcohol Use Disorder</h1>
+</section>
+<section id="limitations" class="level1">
+<h1>Limitations</h1>
+<p>The data that was curated only contains data up to 2017. Hence, it is not the most accurate representation of the current mental states of people in the world. With the emergence of the Covid-19 pandemic in 2019, research has shown that mental health has deteriorated immensely (cite). Ideally, the visualisations shown would include the most recent data for stakeholders to identify current poignant mental health issues that are on the rise.</p>
+<p>Some countries are not included because of the mismatch of data between the countries in the global map and the countries in the mental health dataset.</p>
 
 
 </section>
