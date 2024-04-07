@@ -8,6 +8,13 @@ A study by researchers from Harvard Medical School and the University of Queensl
 
 This website provides a visualisation for Mental Health Disorders across the globe. It is meant to bring awareness to the mental health issues that people experience, albeit the small percentage it seems to take up of the whole population. It is important to note that not all who suffer from mental health disorders seek help and are being reported in the dataset. 
 
+# Dataset Used
+The dataset used includes columns of data on 
+```{r, eval=TRUE, include=FALSE}
+library(tidyverse)
+new_data <- read.csv("/Users/aliciaho/Documents/GitHub/aliiciaho.github.io/personal_app/refined_NMdata.csv")
+```
+
 # Mental Health Disorder trend for each country
 
 ```{=html}
@@ -19,4 +26,6 @@ This website provides a visualisation for Mental Health Disorders across the glo
 
 #Limitations
 The data that was curated only contains data up to 2017. Hence, it is not the most accurate representation of the current mental states of people in the world. With the emergence of the Covid-19 pandemic in 2019, research has shown that mental health has deteriorated immensely (cite). Ideally, the visualisations shown would include the most recent data for stakeholders to identify current poignant mental health issues that are on the rise. 
+
+Some countries are not included because of the mismatch of data between the countries in the global map and the countries in the mental health dataset. 
 
