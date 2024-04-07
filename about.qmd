@@ -15,6 +15,7 @@ I am Alicia Ho, an NUS student majoring in Music at the YST Conservatory of Musi
 The link to the data of mental health disorders worldwide can be found here: https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder?resource=download
 
 The link to the leaflet data to create the world map can be found here:
+https://github.com/lvictory/maps-data/blame/master/world.geo.json 
 
 # References
 Queensland Brain Institute. (2023, July 31). Half of World’s Population Will Experience a Mental Health Disorder. Harvard.edu. https://hms.harvard.edu/news/half-worlds-population-will-experience-mental-health-disorder

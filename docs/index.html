@@ -148,7 +148,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="dataset-used" class="level1">
 <h1>Dataset Used</h1>
-<p>The dataset used includes the columns: - Index: A unique number attached to each observation - Entity: Country name - Code: Country Code - Year: Year of data observed - Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder</p>
+<p>The dataset used includes the columns:</p>
+<ul>
+<li>Index: A unique number attached to each observation</li>
+<li>Entity: Country name</li>
+<li>Code: Country Code</li>
+<li>Year: Year of data observed</li>
+<li>Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder</li>
+</ul>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-hover table-sm table-striped small" data-quarto-postprocess="true">
@@ -252,13 +259,196 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
+<p>There are a total of 168 countries that will be used in these visualisations.</p>
 </section>
 <section id="mental-health-disorder-trend-for-each-country" class="level1">
 <h1>Mental Health Disorder trend for each country</h1>
+<p>Below, you can find an interactive graph. Select the country you are interested in and its relevant graph will be produced.</p>
 <iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
 </section>
 <section id="alcohol-use-disorder" class="level1">
 <h1>Alcohol Use Disorder</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-hover table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rank</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Alcoholuse_Disorder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Belarus</td>
+<td style="text-align: left;">BLR</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">5.342888</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Russia</td>
+<td style="text-align: left;">RUS</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">4.727182</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Estonia</td>
+<td style="text-align: left;">EST</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">4.713617</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Ukraine</td>
+<td style="text-align: left;">UKR</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">4.686883</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Lithuania</td>
+<td style="text-align: left;">LTU</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">4.428001</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Latvia</td>
+<td style="text-align: left;">LVA</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">4.408781</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Moldova</td>
+<td style="text-align: left;">MDA</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">4.074256</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Mongolia</td>
+<td style="text-align: left;">MNG</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">3.478108</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Kazakhstan</td>
+<td style="text-align: left;">KAZ</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">3.369006</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Greenland</td>
+<td style="text-align: left;">GRL</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">3.086688</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>At a glance, it can be observed that most of the top 10 countries with a high percentage of their population suffering from alcohol use disorder originate from Eastern European countries.</p>
+<p>The country with the highest alcohol use disorders is Belarus with 5.34% of its population suffering from it in 2017. That is roughly 500,000 people out of the 9.459 million citizens of Belarus in 2017. Belarus has one of the highest alcohol consumption per capita in the world.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-hover table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rank</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Alcoholuse_Disorder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">168</td>
+<td style="text-align: left;">Italy</td>
+<td style="text-align: left;">ITA</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.462937</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">167</td>
+<td style="text-align: left;">Israel</td>
+<td style="text-align: left;">ISR</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.498381</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">165</td>
+<td style="text-align: left;">Morocco</td>
+<td style="text-align: left;">MAR</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.574866</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">164</td>
+<td style="text-align: left;">Iran</td>
+<td style="text-align: left;">IRN</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.579778</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">Japan</td>
+<td style="text-align: left;">JPN</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.582880</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">162</td>
+<td style="text-align: left;">Syria</td>
+<td style="text-align: left;">SYR</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.621551</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">161</td>
+<td style="text-align: left;">Yemen</td>
+<td style="text-align: left;">YEM</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.634413</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">160</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.644969</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">159</td>
+<td style="text-align: left;">Sudan</td>
+<td style="text-align: left;">SDN</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.645813</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">158</td>
+<td style="text-align: left;">Palestine</td>
+<td style="text-align: left;">PSE</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">0.648970</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Most of these countries practice the religion of Islam, which considers drinking alcohol non-halal and it not allowed. This explains why these countries belong in the bottom 10 in terms of alcohol use disorders.</p>
 </section>
 <section id="limitations" class="level1">
 <h1>Limitations</h1>

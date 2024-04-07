@@ -13,16 +13,27 @@ This website provides a visualisation for Mental Health Disorders across the glo
 # Dataset Used
 
 The dataset used includes the columns: 
-- Index: A unique number attached to each observation 
-- Entity: Country name 
-- Code: Country Code 
-- Year: Year of data observed 
-- Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder
+
+* Index: A unique number attached to each observation 
+* Entity: Country name 
+* Code: Country Code 
+* Year: Year of data observed 
+* Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder
 
 ```{r, eval=TRUE, include=FALSE}
 library(tidyverse)
 library(kableExtra)
+library(geojsonio)
 new_data <- read.csv("/Users/aliciaho/Documents/GitHub/aliiciaho.github.io/personal_app/refined_NMdata.csv")
+countries <- geojsonio::geojson_read("https://raw.githubusercontent.com/lvictory/maps-data/master/world.geo.json", 
+                                  what = "sp")
+spaces_indices <- which(trimws(new_data$Code) == "")
+cleaned_data <- new_data[-spaces_indices, ] %>% 
+  filter(Year >= 1990)
+
+# Cleaning table data
+matching_values <- cleaned_data$Code %in% countries$id 
+matched_dataset1 <- cleaned_data[matching_values, ]
 ```
 
 ```{r, eval=TRUE, echo=FALSE}
@@ -43,12 +54,57 @@ table %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
 
+There are a total of 168 countries that will be used in these visualisations. 
+
 # Mental Health Disorder trend for each country
+Below, you can find an interactive graph. Select the country you are interested in and its relevant graph will be produced. 
 
 ```{=html}
 <iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
 ```
+
 # Alcohol Use Disorder
+```{r, eval=TRUE, echo=FALSE}
+alcohol <- matched_dataset1 %>% arrange(desc(Alcohol.use.disorders....)) %>% 
+  filter(Year == 2017) %>%
+  select(Entity, Code, Year, Alcohol.use.disorders....) %>%
+  rename(
+    Alcoholuse_Disorder = Alcohol.use.disorders.... 
+  ) %>%
+  slice(1:10)
+Rank <- 1:10
+alcohol <- alcohol[, !names(alcohol) %in% "Rank", drop = FALSE]
+
+# Insert the new_column as the first column
+alcohol <- cbind(Rank, alcohol)
+
+alcohol %>%
+  knitr::kable() %>%
+  kable_styling(full_width = FALSE, bootstrap_options = "hover")
+```
+At a glance, it can be observed that most of the top 10 countries with a high percentage of their population suffering from alcohol use disorder originate from Eastern European countries. 
+
+The country with the highest alcohol use disorders is Belarus with 5.34% of its population suffering from it in 2017. That is roughly 500,000 people out of the 9.459 million citizens of Belarus in 2017. Belarus has one of the highest alcohol consumption per capita in the world. 
+
+```{r, eval=TRUE, echo=FALSE}
+alcohol_low <- matched_dataset1 %>% arrange(Alcohol.use.disorders....) %>% 
+  filter(Year == 2017) %>%
+  select(Entity, Code, Year, Alcohol.use.disorders....) %>%
+  rename(
+    Alcoholuse_Disorder = Alcohol.use.disorders.... 
+  ) %>%
+  slice(1:10)
+Rank <- c(168, 167, 165, 164, 163, 162, 161, 160, 159, 158)
+alcohol_low <- alcohol_low[, !names(alcohol_low) %in% "Rank", drop = FALSE]
+# Insert the new_column as the first column
+alcohol_low <- cbind(Rank, alcohol_low)
+
+alcohol_low %>%
+  knitr::kable() %>%
+  kable_styling(full_width = FALSE, bootstrap_options = "hover")
+```
+
+Most of these countries practice the religion of Islam, which considers drinking alcohol non-halal and it not allowed. This explains why these countries belong in the bottom 10 in terms of alcohol use disorders. 
 
 # Limitations
 
