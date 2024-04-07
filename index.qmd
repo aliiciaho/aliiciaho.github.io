@@ -12,14 +12,19 @@ This website provides a visualisation for Mental Health Disorders across the glo
 
 # Dataset Used
 
-The dataset used includes the columns: - Index: A unique number attached to each observation - Entity: Country name - Code: Country Code - Year: Year of data observed - Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder
+The dataset used includes the columns: 
+- Index: A unique number attached to each observation 
+- Entity: Country name 
+- Code: Country Code 
+- Year: Year of data observed 
+- Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder
 
 ```{r, eval=TRUE, include=FALSE}
 library(tidyverse)
 new_data <- read.csv("/Users/aliciaho/Documents/GitHub/aliiciaho.github.io/personal_app/refined_NMdata.csv")
 ```
 
-```{r, eval=TRUE}
+```{r, eval=TRUE, echo=FALSE}
 print(head(new_data %>%
              rename(Index = index,
          Entity = Entity,
