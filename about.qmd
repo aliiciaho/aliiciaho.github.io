@@ -7,8 +7,11 @@ title: "About"
 I am Alicia Ho, an NUS student majoring in Music at the YST Conservatory of Music.
 
 # Why did I choose this topic?
+My initial idea was to analyse mental health conditions based on the type of music that one listens to. Since I study music, I thought that this topic would be more relatable to me. However, I found that the trends were not clear and there was no strong conclusion that could be drawn from the data. Hence, I decided to explore mental health disorders on a more general level.
 
+I think that in Singapore, and maybe some other parts of the world, mental health is still not talked about enough. There is still some stigma attached to getting therapy and older generations may think that getting help for certain mental conditions is just a sign of weakness. However, I think that these mental health disorders should be dealt with more seriously as it affects the quality of our lives to a large extent. 
 
+Hence, I hope that this visualisation will bring to light the prevalence of mental health disorders and certain trends that are observed based on this data. 
 
 # Credits
 
