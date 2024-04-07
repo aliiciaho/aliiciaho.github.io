@@ -60,6 +60,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -147,21 +150,106 @@ ul.task-list li input[type="checkbox"] {
 <h1>Dataset Used</h1>
 <p>The dataset used includes the columns: - Index: A unique number attached to each observation - Entity: Country name - Code: Country Code - Year: Year of data observed - Schizophrenia, Bipolar disorder, Eating disorders, Anxiety Disorders, Drug use Disorders, Depression, Alcohol Use Disorders: Percenatge of people reported to have the specific mental health disorder</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>  Index      Entity Code Year Schizophrenia Bipolar_Disorder Eating_Disorder
-1     0 Afghanistan  AFG 1990      0.160560         0.697779        0.101855
-2     1 Afghanistan  AFG 1991      0.160312         0.697961        0.099313
-3     2 Afghanistan  AFG 1992      0.160135         0.698107        0.096692
-4     3 Afghanistan  AFG 1993      0.160037         0.698257        0.094336
-5     4 Afghanistan  AFG 1994      0.160022         0.698469        0.092439
-6     5 Afghanistan  AFG 1995      0.160076         0.698695        0.090980
-  Anxiety_Disorder Druguse_Disorder Depression Alcoholuse_Disorder
-1         4.828830         1.677082   4.071831            0.672404
-2         4.829740         1.684746   4.079531            0.671768
-3         4.831108         1.694334   4.088358            0.670644
-4         4.830864         1.705320   4.096190            0.669738
-5         4.829423         1.716069   4.099582            0.669260
-6         4.828337         1.728112   4.104207            0.668746</code></pre>
+<div class="cell-output-display">
+<table class="table table-hover table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Index</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Schizophrenia</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Bipolar_Disorder</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Eating_Disorder</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Anxiety_Disorder</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Druguse_Disorder</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Depression</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Alcoholuse_Disorder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">0.160560</td>
+<td style="text-align: right;">0.697779</td>
+<td style="text-align: right;">0.101855</td>
+<td style="text-align: right;">4.828830</td>
+<td style="text-align: right;">1.677082</td>
+<td style="text-align: right;">4.071831</td>
+<td style="text-align: right;">0.672404</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">0.160312</td>
+<td style="text-align: right;">0.697961</td>
+<td style="text-align: right;">0.099313</td>
+<td style="text-align: right;">4.829740</td>
+<td style="text-align: right;">1.684746</td>
+<td style="text-align: right;">4.079531</td>
+<td style="text-align: right;">0.671768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1992</td>
+<td style="text-align: right;">0.160135</td>
+<td style="text-align: right;">0.698107</td>
+<td style="text-align: right;">0.096692</td>
+<td style="text-align: right;">4.831108</td>
+<td style="text-align: right;">1.694334</td>
+<td style="text-align: right;">4.088358</td>
+<td style="text-align: right;">0.670644</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1993</td>
+<td style="text-align: right;">0.160037</td>
+<td style="text-align: right;">0.698257</td>
+<td style="text-align: right;">0.094336</td>
+<td style="text-align: right;">4.830864</td>
+<td style="text-align: right;">1.705320</td>
+<td style="text-align: right;">4.096190</td>
+<td style="text-align: right;">0.669738</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: right;">0.160022</td>
+<td style="text-align: right;">0.698469</td>
+<td style="text-align: right;">0.092439</td>
+<td style="text-align: right;">4.829423</td>
+<td style="text-align: right;">1.716069</td>
+<td style="text-align: right;">4.099582</td>
+<td style="text-align: right;">0.669260</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: right;">0.160076</td>
+<td style="text-align: right;">0.698695</td>
+<td style="text-align: right;">0.090980</td>
+<td style="text-align: right;">4.828337</td>
+<td style="text-align: right;">1.728112</td>
+<td style="text-align: right;">4.104207</td>
+<td style="text-align: right;">0.668746</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
 </div>
 </section>
