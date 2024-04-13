@@ -110,5 +110,131 @@ overall_median$text <- paste("Year:", overall_median$Year,
  ggplotly(p, tooltip = "text")
  
  
-matched_dataset1 %>% filter(Year == c(1990, 2017)) %>%
-  select(Entity, Code, Year, Depression....)
+ggplot(matched_dataset1 %>% filter(Year == 2017) %>%
+  select(Entity, Code, Year, Schizophrenia....)) +
+  aes(x=Schizophrenia....) + geom_histogram()
+
+####
+labels <- reactive({
+  dataset <- datasetInput()
+  disorder_data <- map_data %>%
+    filter(Year == 2017) %>%
+    select(Entity, !!input$dataset)
+  
+  # Join with countries data to get the country names
+  country_labels <- left_join(disorder_data, countries, by = c("Entity" = "id"))
+  
+  # Create label text
+  label_text <- sprintf(
+    "<strong>%s</strong> (2017)<br/> %s: %s",
+    country_labels$name, 
+    input$dataset, 
+    as.character(country_labels[[input$dataset]])
+  )
+  return(htmltools::HTML(label_text)) 
+})
+
+
+
+
+
+country_data[country_data$Entity == country_id, input$dataset]
+
+
+
+# important map things
+
+```{r eval=TRUE, include=FALSE}
+#Creating map
+library(geojsonio)
+library(leaflet)
+library(magrittr)
+library(tidyverse)
+
+countries <- geojsonio::geojson_read("https://raw.githubusercontent.com/lvictory/maps-data/master/world.geo.json", 
+                                     what = "sp")
+class(countries)
+names(countries)
+
+new_data <- read.csv("/Users/aliciaho/Documents/GitHub/aliiciaho.github.io/personal_app/refined_NMdata.csv")
+
+# Cleaning data (omitting regions)
+spaces_indices <- which(trimws(new_data$Code) == "")
+cleaned_data <- new_data[-spaces_indices, ] %>% 
+  filter(Year >= 1990)
+
+# Cleaning table data
+matching_values <- cleaned_data$Code %in% countries$id 
+matched_dataset1 <- cleaned_data[matching_values, ]
+
+map_data <- matched_dataset1 %>% filter(Year == 2017) %>% 
+  arrange(Entity) %>%
+  rename(index = index,
+         Entity = Entity,
+         Code = Code,
+         Year = Year,
+         Schizophrenia = Schizophrenia....,
+         Bipolar_Disorder = Bipolar.disorder....,
+         Eating_Disorder = Eating.disorders....,
+         Anxiety_Disorder = Anxiety.disorders....,
+         Druguse_Disorder = Drug.use.disorders....,
+         Depression = Depression....,
+         Alcoholuse_Disorder = Alcohol.use.disorders....)
+
+m <- leaflet(countries) %>%
+  setView(-96, 37.8, 4) %>%
+  addTiles("MapBox", options = tileOptions(
+    id = "mapbox.light",
+    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN')))
+
+labels <- lapply(seq(nrow(countries)), function(i) {
+  country <- countries$name[i]
+  country_id <- countries$id[i]
+  country_data <- map_data[map_data$Code == country_id, ]
+  label_text <- sprintf(
+    "<strong>%s</strong> %s<br/> <span style='color: #FF6666;'>%s: %s</span> <br/><span style='color: #CC9900;'>%s: %s</span> <br/><span style='color: #33CC33;'>%s: %s</span> <br/><span style='color: #33FF99;'>%s: %s</span> <br/><span style='color: #00CCFF;'>%s: %s</span> <br/><span style='color: #CC99FF;'>%s: %s</span> <br/><span style='color: #FF66CC;'>%s: %s</span>",
+    country, "(2017)", 
+    "Alcohol Use Disorder", country_data$Alcoholuse_Disorder,
+    "Anxiety Disorder", country_data$Anxiety_Disorder,
+    "Bipolar Disorder", country_data$Bipolar_Disorder,
+    "Depression", country_data$Depression,
+    "Drug Use Disorder", country_data$Druguse_Disorder,
+    "Eating Disorder", country_data$Eating_Disorder,
+    "Schizophrenia", country_data$Schizophrenia
+  )
+  return(htmltools::HTML(label_text))
+})
+
+
+```
+
+```{r eval=TRUE, echo=FALSE}
+mybins <- c(0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, Inf)
+mypalette <- colorBin(
+  palette = "YlOrRd", domain = map_data$Alcoholuse_Disorder, bins = mybins
+)
+
+m %>% addPolygons(
+  fillColor = ~mypalette(map_data$Alcoholuse_Disorder),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlightOptions = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "15px",
+    direction = "auto")
+) %>% 
+  addLegend(
+    pal = mypalette, values = mybins, opacity = 0.9,
+    title = "Alcohol Use Disorder", position = "bottomleft"
+  )
+```

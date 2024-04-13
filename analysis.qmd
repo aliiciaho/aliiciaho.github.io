@@ -87,7 +87,7 @@ Most of these countries practice the religion of Islam, which considers drinking
 
 **Italy** has been successful in implementing policies to reduce alcohol consumption since the early 2000s (Asciutto et al., 2015). In addition, there are changes in social norms regarding eating habits and a greater spread of non-alcoholic beverages (Asciutto et al., 2015). However, despite this low percentage, research has shown that only 5% of admitted patients in hospitals are recognised as having an alcohol use disorder (Ceccanti et al., 2018). This shows that there is a lack of information and awareness, even among professionals about alcohol use disorders. 
 
-Summary: **Italy's** implementation of alcohol control policies can be used as a guide to reduce alcohol consumption. These policies may not always cause a decrease in alcohol use disorder. Increased accessibility to therapy such as Alcoholic Anonymous (AA) and medications may be a better way to deal with persistently high percentages of alcohol use disorder within countries.
+*Summary:* ***Italy's*** *implementation of alcohol control policies can be used as a guide to reduce alcohol consumption. These policies may not always cause a decrease in alcohol use disorder. Increased accessibility to therapy such as Alcoholic Anonymous (AA) and medications may be a better way to deal with persistently high percentages of alcohol use disorder within countries.*
 
 ## Depression
 ```{r, eval=TRUE, echo=FALSE}
@@ -109,6 +109,7 @@ depression_high %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
 
+Geographically, it seems that there is not much of a pattern when it comes to countries with high depression rates. 
 
 ```{r, eval=TRUE, echo=FALSE}
 depression_low <- matched_dataset1 %>% arrange(Depression....) %>% 
