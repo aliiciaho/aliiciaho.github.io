@@ -4,11 +4,11 @@ title: "Global Mental Health Disorders"
 
 # What are the trends in Mental Health Disorders across the globe?
 
-Mental Health refers to "mental well-being that enables people to cope with the stresses of life, realize their abilities, learn well and work well, and contribute to their community" (World Health Organization, 2022b). Mental health disorders are "characterized by a clinically significant disturbance in an individual’s cognition, emotional regulation, or behaviour" (World Health Organization, 2022a). There are a multitude of mental health disorders that exist. On this website, the data analysed are focused on 7 Mental Health Disorders — Alcohol use disorder, Anxiety disorder, Bipolar disorder, Depression, Drug use disorder, Eating disorder and Schizophrenia.
+**Mental Health** refers to "mental well-being that enables people to cope with the stresses of life, realize their abilities, learn well and work well, and contribute to their community" (World Health Organization, 2022b). **Mental health disorders** are "characterized by a clinically significant disturbance in an individual’s cognition, emotional regulation, or behaviour" (World Health Organization, 2022a). There are a multitude of mental health disorders that exist. On this website, the data analysed are focused on 7 Mental Health Disorders — Alcohol use disorder, Anxiety disorder, Bipolar disorder, Depression, Drug use disorder, Eating disorder and Schizophrenia.
 
 A study by researchers from Harvard Medical School and the University of Queensland have found that one out of every two people in the world will develop a mental health disorder in their lifetime (Queensland Brain Institute, 2023). This shows how prevalent mental health disorders have been in recent years. It is crucial to find out the main type and cause of mental health disorders in order to deal with them effectively. The current treatments used to deal with these disorder have not been very effective, hence data in this area of study will allow for greater ease of finding an effective treatment (Queensland Brain Institute, 2023).
 
-This website provides a visualisation for Mental Health Disorders across the globe. It is meant to bring awareness to the mental health issues that people experience, albeit the small percentage it seems to take up of the whole population. It is important to note that not all who suffer from mental health disorders seek help and are being reported in the dataset.
+This data story provides a visualisation for Mental Health Disorders across the globe from 1990-2017. It is meant to **bring awareness to the mental health issues that people experience**, albeit the small percentage it seems to take up of the whole population. Understanding the trends, disparities, and progress in mental health over time is crucial for **effective intervention and policy-making**. It is important to note that not all who suffer from mental health disorders seek help and are being reported in the dataset.
 
 # Dataset Used
 
@@ -24,6 +24,8 @@ The dataset used includes the columns:
 library(tidyverse)
 library(kableExtra)
 library(geojsonio)
+library(ggplot2)
+library(plotly)
 new_data <- read.csv("/Users/aliciaho/Documents/GitHub/aliiciaho.github.io/personal_app/refined_NMdata.csv")
 countries <- geojsonio::geojson_read("https://raw.githubusercontent.com/lvictory/maps-data/master/world.geo.json", 
                                   what = "sp")
@@ -54,7 +56,7 @@ table %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
 
-There are a total of 168 countries that will be used in these visualisations. 
+There are a total of **168 countries** that will be used in these visualisations. 
 
 # Mental Health Disorder trend for each country
 Below, you can find an interactive graph. Select the country you are interested in and its relevant graph will be produced. 
@@ -63,48 +65,73 @@ Below, you can find an interactive graph. Select the country you are interested 
 <iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
 ```
 
-# Alcohol Use Disorder
+# Overall trends of mental health disorder
+
+### Which disorders should we be concerned about?
 ```{r, eval=TRUE, echo=FALSE}
-alcohol <- matched_dataset1 %>% arrange(desc(Alcohol.use.disorders....)) %>% 
+median_values_2017 <- matched_dataset1 %>%
   filter(Year == 2017) %>%
-  select(Entity, Code, Year, Alcohol.use.disorders....) %>%
-  rename(
-    Alcoholuse_Disorder = Alcohol.use.disorders.... 
-  ) %>%
-  slice(1:10)
-Rank <- 1:10
-alcohol <- alcohol[, !names(alcohol) %in% "Rank", drop = FALSE]
+  pivot_longer(cols = Schizophrenia....:Alcohol.use.disorders...., names_to = "disorder_type", values_to = "percentage") %>%
+  group_by(disorder_type) %>%
+  summarize(median_percentage = median(percentage)) %>% mutate(x_values = c(-0.32, -0.21, -0.11, 0, 0.11, 0.21, 0.32))
 
-# Insert the new_column as the first column
-alcohol <- cbind(Rank, alcohol)
-
-alcohol %>%
-  knitr::kable() %>%
-  kable_styling(full_width = FALSE, bootstrap_options = "hover")
-```
-At a glance, it can be observed that most of the top 10 countries with a high percentage of their population suffering from alcohol use disorder originate from Eastern European countries. 
-
-The country with the highest alcohol use disorders is Belarus with 5.34% of its population suffering from it in 2017. That is roughly 500,000 people out of the 9.459 million citizens of Belarus in 2017. Belarus has one of the highest alcohol consumption per capita in the world. 
-
-```{r, eval=TRUE, echo=FALSE}
-alcohol_low <- matched_dataset1 %>% arrange(Alcohol.use.disorders....) %>% 
-  filter(Year == 2017) %>%
-  select(Entity, Code, Year, Alcohol.use.disorders....) %>%
-  rename(
-    Alcoholuse_Disorder = Alcohol.use.disorders.... 
-  ) %>%
-  slice(1:10)
-Rank <- c(168, 167, 165, 164, 163, 162, 161, 160, 159, 158)
-alcohol_low <- alcohol_low[, !names(alcohol_low) %in% "Rank", drop = FALSE]
-# Insert the new_column as the first column
-alcohol_low <- cbind(Rank, alcohol_low)
-
-alcohol_low %>%
-  knitr::kable() %>%
-  kable_styling(full_width = FALSE, bootstrap_options = "hover")
+ggplot(matched_dataset1 %>%
+         filter(Year ==2017) %>%
+        pivot_longer(cols = Schizophrenia....:Alcohol.use.disorders...., names_to = "disorder_type", values_to = "percentage") %>%
+        select(Year, disorder_type, percentage)) +
+  aes(y = percentage, color = disorder_type) + 
+  geom_boxplot() + 
+  theme_bw() +
+  labs(y = "Percentage of Population", title = "Spread of each global mental health disorder in 2017") +
+  scale_color_discrete(
+                name = "Type of mental health\ndisorder",
+                labels = c("Alcohol use disorder", "Anxiety disorder", "Bipolar disorder", "Depression", "Drug use disorder", "Eating disorder", "Schizophrenia")
+              ) +
+  geom_label(data = median_values_2017, aes(label = paste(round(median_percentage, 3)), x = c(-0.32, -0.21, -0.11, 0, 0.11, 0.21, 0.32), y = median_percentage), 
+            color = "black", size = 3, vjust = -0.3, show.legend = NA) +
+  theme(axis.ticks.x = element_blank(), axis.text.x = element_blank(), axis.title.x = element_blank())
 ```
 
-Most of these countries practice the religion of Islam, which considers drinking alcohol non-halal and it not allowed. This explains why these countries belong in the bottom 10 in terms of alcohol use disorders. 
+The graph above shows that the dominant mental health disorders that prevail in 2017 are **Anxiety disorders** and **Depression**. 
+
+
+```{r, eval=TRUE, echo=FALSE, message=FALSE}
+invisible(overall_median <- matched_dataset1 %>%
+  rename(index = index,
+         Entity = Entity,
+         Code = Code,
+         Year = Year,
+         Schizophrenia = Schizophrenia....,
+         Bipolar_Disorder = Bipolar.disorder....,
+         Eating_Disorder = Eating.disorders....,
+         Anxiety_Disorder = Anxiety.disorders....,
+         Druguse_Disorder = Drug.use.disorders....,
+         Depression = Depression....,
+         Alcoholuse_Disorder = Alcohol.use.disorders....) %>%
+  pivot_longer(cols = Schizophrenia:Alcoholuse_Disorder, names_to = "disorder_type", values_to = "percentage") %>%
+  group_by(Year, disorder_type) %>% summarise(median_year = median(percentage)) %>% ungroup()
+)
+ggplot(overall_median) +
+  aes(x = Year, y = median_year, color = disorder_type) + 
+  geom_point(shape="cross") +
+  labs(y = "Median Value of % of Population across all countries", title = "Overall trend of median percentage values of mental health disorders worldwide \nfrom 1990-2017") +
+  geom_line() +
+  theme_bw() +
+  theme(axis.text.x = element_text(colour = "grey20", size = 10, angle = 90, hjust = 0.5, vjust = 0.5) 
+  ) +
+   scale_color_discrete(
+     name = "Type of mental health\ndisorder",
+     labels = c("Alcohol use disorder", "Anxiety disorder", "Bipolar disorder", "Depression", "Drug use disorder", "Eating disorder", "Schizophrenia")
+   ) +
+    scale_y_continuous(minor_breaks = seq(1, 5, 0.2)) +
+        scale_x_continuous(breaks = seq(1990, 2017, 1))
+
+```
+The trend of median percentages of mental health disorders across 1990-2017 shows that there are no significant increases or decreases. Although this shows that dealing with mental health disorders is not an issue of high priority, it also signifies that the **current methods of improving individuals' mental health are not effective**. 
+
+# Which countries should pay greater attention to their citizens' mental health?
+
+
 
 # Limitations
 

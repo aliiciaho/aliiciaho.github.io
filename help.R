@@ -73,3 +73,42 @@ ggplot(sgp_data) +
   theme(axis.text.x = element_text(colour = "grey20", size = 10, angle = 90, hjust = 0.5, vjust = 0.5)
   )
 ```
+
+library(plotly)
+overall_median <- matched_dataset1 %>%
+  rename(index = index,
+         Entity = Entity,
+         Code = Code,
+         Year = Year,
+         Schizophrenia = Schizophrenia....,
+         Bipolar_Disorder = Bipolar.disorder....,
+         Eating_Disorder = Eating.disorders....,
+         Anxiety_Disorder = Anxiety.disorders....,
+         Druguse_Disorder = Drug.use.disorders....,
+         Depression = Depression....,
+         Alcoholuse_Disorder = Alcohol.use.disorders....) %>%
+  pivot_longer(cols = Schizophrenia:Alcoholuse_Disorder, names_to = "disorder_type", values_to = "percentage") %>%
+  group_by(Year, disorder_type) %>% summarise(median_year = median(percentage)) %>%
+  ungroup()
+
+overall_median$text <- paste("Year:", overall_median$Year,
+                             "<br>Disorder Type:", overall_median$disorder_type,
+                             "<br>Median Percentage:", round(overall_median$median_year, 2))
+
+ p <- ggplot(overall_median) +
+  aes(x = Year, y = median_year, color = disorder_type, text = text) + 
+  geom_point(shape="cross") +
+  labs(y = "Median Value of % of Population across all countries") +
+  geom_line() +
+  theme_bw() +
+  theme(axis.text.x = element_text(colour = "grey20", size = 10, angle = 90, hjust = 0.5, vjust = 0.5) 
+  ) +
+   scale_color_discrete(
+     name = "Type of mental health\ndisorder",
+     labels = c("Alcohol use disorder", "Anxiety disorder", "Bipolar disorder", "Depression", "Drug use disorder", "Eating disorder", "Schizophrenia")
+   )
+ ggplotly(p, tooltip = "text")
+ 
+ 
+matched_dataset1 %>% filter(Year == c(1990, 2017)) %>%
+  select(Entity, Code, Year, Depression....)

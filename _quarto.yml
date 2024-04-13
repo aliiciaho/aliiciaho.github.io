@@ -10,6 +10,7 @@ website:
         text: Home
       - about.qmd
       - map.qmd
+      - analysis.qmd
 
 format:
   html:
