@@ -2,7 +2,7 @@
 title: "Self-Exploration"
 ---
 
-Hover over the country of interest to find out the most recent mental health disorder data (2017)!
+Hover over the country of interest to find out the most recent mental health disorder data (2017)! Toggle between the different mental health disorders to get a bird's eye view of data across the globe.
 
 ```{=html}
 <iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/mapmap/"> </iframe>

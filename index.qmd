@@ -56,16 +56,10 @@ table %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
 
-There are a total of **168 countries** that will be used in these visualisations. 
-
-# Mental Health Disorder trend for each country
-Below, you can find an interactive graph. Select the country you are interested in and its relevant graph will be produced. 
-
-```{=html}
-<iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
-```
+There are a total of **168 countries** that will be used in these visualisations.
 
 # Overall trends of mental health disorder
+
 
 ### Which disorders should we be concerned about?
 ```{r, eval=TRUE, echo=FALSE}
@@ -92,7 +86,7 @@ ggplot(matched_dataset1 %>%
   theme(axis.ticks.x = element_blank(), axis.text.x = element_blank(), axis.title.x = element_blank())
 ```
 
-The graph above shows that the dominant mental health disorders that prevail in 2017 are **Anxiety disorders** and **Depression**. 
+The graph above shows that the dominant mental health disorders that prevail in 2017 are **Anxiety disorders**, followed by **Depression** and **Alcohol Use Disorder**. 
 
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE}
@@ -131,10 +125,39 @@ The trend of median percentages of mental health disorders across 1990-2017 show
 
 # Which countries should pay greater attention to their citizens' mental health?
 
+```{r, eval=TRUE, echo=FALSE}
+x <- data.frame(
+  Rank = c(1,2,3),
+  Anxiety = c("New Zealand", "Norway", "Iran"),
+  Depression = c("Greenland", "Lesotho", "Moroco"),
+  Alcohol_Use_Disorder = c("Belarus", "Russia", "Estonia"),
+  Drug_Use_Disorder = c("United States", "United Arab Emirates", "Libya"),
+  Bipolar_Disorder = c("New Zealand", "Australia", "Brazil"),
+  Eating_Disorder = c("Australia", "Luxembourg", "Spain"),
+  Schizophrenia = c("Australia", "Netherlands", "New Zealand")
+)
+x %>%
+  knitr::kable() %>%
+  kable_styling(full_width = FALSE, bootstrap_options = "hover")
+```
+*Rank 1 indicates highest percentage of population with the mental health disorder*
 
+Hover over the country of interest to find out the most recent mental health disorder data (2017). Toggle between the different mental health disorders to get a bird's eye view of data across the globe.
+
+```{=html}
+<iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/mapmap/"> </iframe>
+```
+
+# Mental Health Disorder trend for each country
+
+Below, you can find an interactive graph. Select the country you are interested in and its relevant graph will be produced. 
+
+```{=html}
+<iframe height="600" width="100%" frameborder="no" src="https://1ua3vn-alicia-ho.shinyapps.io/personal_app/"> </iframe>
+```
 
 # Limitations
 
 The data that was curated only contains data up to 2017. Hence, it is not the most accurate representation of the current mental states of people in the world. With the emergence of the Covid-19 pandemic in 2019, research has shown that mental health has deteriorated immensely (cite). Ideally, the visualisations shown would include the most recent data for stakeholders to identify current poignant mental health issues that are on the rise.
 
-Some countries are not included because of the mismatch of data between the countries in the global map and the countries in the mental health dataset.
+Some countries are not included because of the mismatch of data between the countries in the global map and the countries in the mental health dataset. (eg. Singapore)

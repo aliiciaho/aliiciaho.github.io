@@ -1,6 +1,7 @@
 ---
 title: "Analysing disorders"
 ---
+
 ```{r, eval=TRUE, include=FALSE}
 library(tidyverse)
 library(kableExtra)
@@ -19,7 +20,8 @@ matching_values <- cleaned_data$Code %in% countries$id
 matched_dataset1 <- cleaned_data[matching_values, ]
 ```
 
-## Alcohol Use Disorder
+## #3 Alcohol Use Disorder
+
 ```{r, eval=TRUE, echo=FALSE}
 alcohol <- matched_dataset1 %>% arrange(desc(Alcohol.use.disorders....)) %>% 
   filter(Year == 2017) %>%
@@ -38,13 +40,14 @@ alcohol %>%
   knitr::kable() %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
-At a glance, it can be observed that most of the top 10 countries with a high percentage of their population suffering from alcohol use disorder originate from Eastern European countries. 
 
-The country with the highest alcohol use disorders is Belarus with 5.34% of its population suffering from it in 2017. That is roughly 500,000 people out of the 9.459 million citizens of Belarus in 2017. Belarus has one of the highest alcohol consumption per capita in the world. 
+At a glance, it can be observed that most of the top 10 countries with a high percentage of their population suffering from alcohol use disorder originate from Eastern European countries.
+
+The country with the highest alcohol use disorders is Belarus with 5.34% of its population suffering from it in 2017. That is roughly 500,000 people out of the 9.459 million citizens of Belarus in 2017. Belarus has one of the highest alcohol consumption per capita in the world.
 
 ### Are alcohol control policies effective?
 
-Based on the top 5 countries in alcohol use disorders, we are zooming in on **Belarus, Lithuania and Russia**. 
+Based on the top 5 countries in alcohol use disorders, we are zooming in on **Belarus, Lithuania and Russia**.
 
 ```{r, eval=TRUE, echo=FALSE}
 d <- matched_dataset1 %>% 
@@ -60,11 +63,13 @@ ggplot(d) +
   theme_bw() +
   labs(y = "Percentage of alcohol use disorder", title = "Alcohol use disorder trend for Belarus, Lithuania and Russia")
 ```
+
 Over the years, it can be observed that there are fluctuations in alcohol use disorders in these 3 countries. Russia and Lithuania have experienced overall negative growth, comparing 2017 and 1990. These are countries that have adopted alcohol control policies such as increasing the legal age of drinking and increasing alcohol tax. Belarus had also implemented similar alcohol control policies, though its effects are evidently less impactful as people found cheaper alcohol alternatives produced domestically to avoid high pricing from taxes (Pavel Grigoriev & Bobrova, 2020). One of the initiatives that caused alcohol consumption to fall after 2010 is the restriction of the production of fruit wines domestically (Pavel Grigoriev & Bobrova, 2020). However, the percentage of the population with alcohol use disorder has not decreased by much.
 
 Though alcohol control policies can help reduce the onset of alcohol use disorders, are limited in their effects. These policies should be used in tandem with accessibility to treatments that takes a more human approach rather than an economic one.
 
 ### Model countries with low alcohol use disorders
+
 ```{r, eval=TRUE, echo=FALSE}
 alcohol_low <- matched_dataset1 %>% arrange(Alcohol.use.disorders....) %>% 
   filter(Year == 2017) %>%
@@ -83,13 +88,14 @@ alcohol_low %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
 
-Most of these countries practice the religion of Islam, which considers drinking alcohol non-halal and it not allowed. This explains why these countries belong in the bottom 10 in terms of alcohol use disorders. 
+Most of these countries practice the religion of Islam, which considers drinking alcohol non-halal and it not allowed. This explains why these countries belong in the bottom 10 in terms of alcohol use disorders.
 
-**Italy** has been successful in implementing policies to reduce alcohol consumption since the early 2000s (Asciutto et al., 2015). In addition, there are changes in social norms regarding eating habits and a greater spread of non-alcoholic beverages (Asciutto et al., 2015). However, despite this low percentage, research has shown that only 5% of admitted patients in hospitals are recognised as having an alcohol use disorder (Ceccanti et al., 2018). This shows that there is a lack of information and awareness, even among professionals about alcohol use disorders. 
+**Italy** has been successful in implementing policies to reduce alcohol consumption since the early 2000s (Asciutto et al., 2015). In addition, there are changes in social norms regarding eating habits and a greater spread of non-alcoholic beverages (Asciutto et al., 2015). However, despite this low percentage, research has shown that only 5% of admitted patients in hospitals are recognised as having an alcohol use disorder (Ceccanti et al., 2018). This shows that there is a lack of information and awareness, even among professionals about alcohol use disorders.
 
-*Summary:* ***Italy's*** *implementation of alcohol control policies can be used as a guide to reduce alcohol consumption. These policies may not always cause a decrease in alcohol use disorder. Increased accessibility to therapy such as Alcoholic Anonymous (AA) and medications may be a better way to deal with persistently high percentages of alcohol use disorder within countries.*
+[*Summary:* ***Italy's*** *implementation of alcohol control policies can be used as a guide to reduce alcohol consumption. These policies may not always cause a decrease in alcohol use disorder. Increased accessibility to therapy such as Alcoholic Anonymous (AA) and medications may be a better way to deal with persistently high percentages of alcohol use disorder within countries.*]{style="color: red;"}
 
-## Depression
+## #2 Depression
+
 ```{r, eval=TRUE, echo=FALSE}
 depression_high <- matched_dataset1 %>% arrange(desc(Depression....)) %>% 
   filter(Year == 2017) %>%
@@ -109,7 +115,13 @@ depression_high %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
 
-Geographically, it seems that there is not much of a pattern when it comes to countries with high depression rates. 
+Geographically, it seems that there is not much of a pattern when it comes to countries with high depression rates. Depression seems to be prevalent in countries all over the world, in spite of difference in culture, economic and development status. **Greenland** has one of the highest rates of suicide in the world, which occurred due to feelings of isolation and depression (Jones, 2020). Most of Greenland's population consists of Inuit Indigenous people, who have needed to make major changes in their lifestyles to adapt to changing climates (Jones, 2020).
+
+Some of these countries experiencing high depression rates are experiencing conflict in the region. Examples include countries in North Africa and the Middle East, such as **Palestine, Iran, Lesotho and Morocco**. The disruptions to their way of life and constant worries about their own lives and their loved ones', are factors that play into the higher rates of depression.
+
+However, even countries that are seemingly politically stable and are developed economies such as the **United States, Australia and Sweden** also have high depression rates. Research shows that this is because more developed countries have more resources to collect data on depression compared to less developed countries. However, the fact that these percentages are considerably high, especially compared to other mental health disorders, shows that it is a problem that should be resolved.
+
+### Are there countries who have dealt with depression effectively?
 
 ```{r, eval=TRUE, echo=FALSE}
 depression_low <- matched_dataset1 %>% arrange(Depression....) %>% 
@@ -128,3 +140,75 @@ depression_low %>%
   knitr::kable() %>%
   kable_styling(full_width = FALSE, bootstrap_options = "hover")
 ```
+
+Although these countries have the lowest depression rates, these percentages are still high compared to other mental health disorders. The lowest value (2.196) is higher than the median value of alcohol use disorder, the third most prevalent disorder (1.508). Most of these countries seem to originate from **the Balkans**, the southeastern part of Europe. The Western Balkans have been implementing policies to improve their mental healthcare services from asylum-based to community-based for the past 2 decades (World Health Organization, 2022c). Although changes in depression rates seem to be inconsistent over the past few decades, perhaps these programmes can be a foundation to be built upon and mirrorred in other countries. 
+
+```{r, eval=TRUE, echo=FALSE}
+e <- matched_dataset1 %>% 
+  filter(Entity %in% c("Albania", "Bosnia and Herzegovina", "Macedonia")) %>%
+  select(Entity, Code, Year, Depression....) %>%
+  rename(
+    Depression = Depression.... 
+  )
+ggplot(e) + 
+  aes(x = Year, y = Depression, color = Entity) + 
+  geom_point() + 
+  geom_line() +
+  theme_bw() +
+  labs(y = "Percentage of Depression", title = "Depression trend for Albania, Bosnia and Herzegovina and Macedonia")
+```
+
+[ *Summary: The main drivers of increased depression rates are political instability, and ironically, developed countries. The* ***Western Balkans*** *have made some improvements after implementing new policies under the guidance of the World Health Organisation, which can be learnt from.* ]{style="color: red;"}
+
+## #1 Anxiety Disorder
+
+```{r, eval=TRUE, echo=FALSE}
+anxiety_high <- matched_dataset1 %>% arrange(desc(Anxiety.disorders....)) %>% 
+  filter(Year == 2017) %>%
+  select(Entity, Code, Year, Anxiety.disorders....) %>%
+  rename(
+    Anxiety = Anxiety.disorders.... 
+  ) %>%
+  slice(1:10)
+Rank <- 1:10
+anxiety_high <- anxiety_high[, !names(anxiety_high) %in% "Rank", drop = FALSE]
+
+# Insert the new_column as the first column
+anxiety_high <- cbind(Rank, anxiety_high)
+
+anxiety_high %>%
+  knitr::kable() %>%
+  kable_styling(full_width = FALSE, bootstrap_options = "hover")
+```
+
+Anxiety comes from some of the world's most **developed economies**. Studies have shown that this is because more developed countries have greater awareness about mental health disorders and better indicators and resources to detect anxiety within people (Shahbazi et al., 2022). However, compared to other mental health disorders, anxiety takes up a distinctly large percentage of the population. Though its median (3.57) is not far from Depression (3.51), its upper quartile is larger by about 1%.
+
+In developed countries, large disparities in income inequality may place pressure on individuals to maintain their social status in society. Additionally, individuals are more likely to consume a diet heavy in processed foods, sodium, and sugar, which can catalyze psychophysiological reactions that impact mood and elevate symptoms such as stress and anxiety (Syed Fahad Javaid et al., 2023). With greater accessibility to social media and technology in developed countries, insecurities in self-image can develop and affect anxiety levels.
+
+With the greater amount of resources that developed countries have, it is essential to invest in not only raising awareness about anxiety disorders, but also providing accessible treatment and promoting a lifestyle to citizens that lowers anxiety.
+
+### Are developing countries less anxious?
+
+```{r, eval=TRUE, echo=FALSE}
+anxiety_low <- matched_dataset1 %>% arrange(Anxiety.disorders....) %>% 
+  filter(Year == 2017) %>%
+  select(Entity, Code, Year, Anxiety.disorders....) %>%
+  rename(
+    Anxiety = Anxiety.disorders....
+  ) %>%
+  slice(1:10)
+Rank <- c(168, 167, 165, 164, 163, 162, 161, 160, 159, 158)
+anxiety_low <- anxiety_low[, !names(anxiety_low) %in% "Rank", drop = FALSE]
+# Insert the new_column as the first column
+anxiety_low <- cbind(Rank, anxiety_low)
+
+anxiety_low %>%
+  knitr::kable() %>%
+  kable_styling(full_width = FALSE, bootstrap_options = "hover")
+```
+
+Similar to depression, even the lowest percentages of anxiety disorders are higher than the median percentages of other mental health disorders. This shows that anxiety is a prevalent issue globally. Geographically, countries with the lowest anxiety rates originate from Central Asia and countries that border Europe and Asia. It is interesting to note that some of these countries such as **Kyrgyzstan, Azerbaijan and Georgia** used to be part of the Soviet Union. There is a legacy that has maintained on the Soviet healthcare system, which uses psychiatry as a political tool (Hook & Bogdanov, 2021). This creates a lot of stigma surrounding mental health and reduces accessibility to mental health care services.
+
+Unfortunately, the low anxiety levels are attributed to lack of education on anxiety disorders rather than a sign of good anxiety management.
+
+[ *Summary: In* ***developed countries***, *there has been greater awareness on anxiety, contributing to a higher percentage of the population being diagnosed. However, there are cultural and societal factors that are the main drivers of anxiety that should be tackled. In* ***East European and Central Asian*** *countries, governments and organisations should work to reduce stigma surrounding mental health and provide better mental health care services to its citizens.* ]{style="color: red;"}
